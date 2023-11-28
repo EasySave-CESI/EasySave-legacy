@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EasySaveConsoleApp
 {
-    class Program
+    public class Program
     {
         private const string StateFilePath = ".//.///logs/state.json";
 
@@ -14,7 +14,6 @@ namespace EasySaveConsoleApp
             if (profiles.Count == 0)
             {
                 Console.WriteLine("No backup profiles have been loaded.");
-                return;
             }
             else
             {
