@@ -41,7 +41,7 @@ namespace EasySaveConsoleApp
                 /* For now it's not implemented yet so we will just create 5 profiles with parameters in a list*/
                 List<Profile> profiles = new List<Profile>();
 
-                profiles.Add(new Profile("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\Sauvegardes\\src1", "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\Sauvegardes\\dtn1", "END", 0, 0, 0, 0));
+                profiles.Add(new Profile("Save1", "", "", "END", 0, 0, 0, 0));
                 profiles.Add(new Profile("Save2", "", "", "END", 0, 0, 0, 0));
                 profiles.Add(new Profile("Save3", "", "", "END", 0, 0, 0, 0));
                 profiles.Add(new Profile("Save4", "", "", "END", 0, 0, 0, 0));
