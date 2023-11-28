@@ -7,45 +7,90 @@ namespace EasySaveConsoleApp
 {
     public class Profile
     {
-        public string Name { get; set; }
-        public string SourceFilePath { get; set; }
-        public string TargetFilePath { get; set; }
-        public string State { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string SourceFilePath { get; set; } = string.Empty;
+        public string TargetFilePath { get; set; } = string.Empty;
+        public string State { get; set; } = string.Empty;
         public int TotalFilesToCopy { get; set; }
         public long TotalFilesSize { get; set; }
         public int NbFilesLeftToDo { get; set; }
         public int Progression { get; set; }
 
-        public Profile(string name, string sourceFilePath, string targetFilePath, string state, int totalFilesToCopy, long totalFilesSize, int nbFilesLeftToDo, int progression)
-        {
-            Name = name;
-            SourceFilePath = sourceFilePath;
-            TargetFilePath = targetFilePath;
-            State = state;
-            TotalFilesToCopy = totalFilesToCopy;
-            TotalFilesSize = totalFilesSize;
-            NbFilesLeftToDo = nbFilesLeftToDo;
-            Progression = progression;
-        }
+        private Profile() { }
 
-        public override string ToString()
+        public static ProfileBuilder Builder() => new ProfileBuilder();
+
+        public class ProfileBuilder
         {
-            return $"Name: {Name}, SourceFilePath: {SourceFilePath}, TargetFilePath: {TargetFilePath}, State: {State}";
+            public Profile _profile;
+
+            public ProfileBuilder()
+            {
+                _profile = new Profile();
+            }
+
+            public ProfileBuilder WithName(string name)
+            {
+                _profile.Name = name;
+                return this;
+            }
+
+            public ProfileBuilder WithSourceFilePath(string sourceFilePath)
+            {
+                _profile.SourceFilePath = sourceFilePath;
+                return this;
+            }
+
+            public ProfileBuilder WithTargetFilePath(string targetFilePath)
+            {
+                _profile.TargetFilePath = targetFilePath;
+                return this;
+            }
+
+            public ProfileBuilder WithState(string state)
+            {
+                _profile.State = state;
+                return this;
+            }
+
+            public ProfileBuilder WithTotalFilesToCopy(int totalFilesToCopy)
+            {
+                _profile.TotalFilesToCopy = totalFilesToCopy;
+                return this;
+            }
+
+            public ProfileBuilder WithTotalFilesSize(long totalFilesSize)
+            {
+                _profile.TotalFilesSize = totalFilesSize;
+                return this;
+            }
+
+            public ProfileBuilder WithNbFilesLeftToDo(int nbFilesLeftToDo)
+            {
+                _profile.NbFilesLeftToDo = nbFilesLeftToDo;
+                return this;
+            }
+
+            public ProfileBuilder WithProgression(int progression)
+            {
+                _profile.Progression = progression;
+                return this;
+            }
+
+            public Profile Build() => _profile;
         }
 
         public static List<Profile> LoadProfiles(string filePath)
         {
             try
             {
-                /* Will read the state.json file and extract all the objects*/
-                /* For now it's not implemented yet so we will just create 5 profiles with parameters in a list*/
                 List<Profile> profiles = new List<Profile>();
 
-                profiles.Add(new Profile("Save1", "", "", "END", 0, 0, 0, 0));
-                profiles.Add(new Profile("Save2", "", "", "END", 0, 0, 0, 0));
-                profiles.Add(new Profile("Save3", "", "", "END", 0, 0, 0, 0));
-                profiles.Add(new Profile("Save4", "", "", "END", 0, 0, 0, 0));
-                profiles.Add(new Profile("Save5", "", "", "END", 0, 0, 0, 0));
+                profiles.Add(Profile.Builder().WithName("Save1").WithState("END").Build());
+                profiles.Add(Profile.Builder().WithName("Save2").WithState("END").Build());
+                profiles.Add(Profile.Builder().WithName("Save3").WithState("END").Build());
+                profiles.Add(Profile.Builder().WithName("Save4").WithState("END").Build());
+                profiles.Add(Profile.Builder().WithName("Save5").WithState("END").Build());
 
                 return profiles;
             }
@@ -92,9 +137,7 @@ namespace EasySaveConsoleApp
                         Directory.CreateDirectory(targetDirectory);
                     }
 
-
                     File.Copy(file, targetFile, true);
-                    /* Will need to change the daily log with the Name of the save and information about the file that has just been saved*/
                 }
 
                 Console.WriteLine($"Backup of profile {Name} completed.");
