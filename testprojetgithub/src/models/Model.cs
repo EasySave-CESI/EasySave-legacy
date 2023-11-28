@@ -87,11 +87,6 @@ namespace EasySaveConsoleApp
                         throw new ArgumentNullException(nameof(targetFile));
                     }
                     string targetDirectory = Path.GetDirectoryName(targetFile) ?? "defaultValue";
-
-                    if (targetDirectory == null)
-                    {
-                        throw new ArgumentNullException(nameof(targetDirectory));
-                    }
                     if (!Directory.Exists(targetDirectory))
                     {
                         Directory.CreateDirectory(targetDirectory);
