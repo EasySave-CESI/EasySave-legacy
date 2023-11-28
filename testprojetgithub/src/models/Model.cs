@@ -84,12 +84,13 @@ namespace EasySaveConsoleApp
 
                     if (Path.GetDirectoryName(targetFile) == null)
                     {
-                        throw new Exception($"Error: {targetFile} is not a valid path.");
+                        throw new ArgumentNullException(nameof(targetFile));
                     }
-                    string targetDirectory = Path.GetDirectoryName(targetFile);
+                    string targetDirectory = Path.GetDirectoryName(targetFile) ?? "defaultValue";
+
                     if (targetDirectory == null)
                     {
-                        throw new Exception($"Error: {targetFile} is not a valid path.");
+                        throw new ArgumentNullException(nameof(targetDirectory));
                     }
                     if (!Directory.Exists(targetDirectory))
                     {
