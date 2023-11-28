@@ -82,11 +82,20 @@ namespace EasySaveConsoleApp
                     string relativePath = file.Replace(SourceFilePath, "");
                     string targetFile = Path.Combine(TargetFilePath, relativePath);
 
+                    if (Path.GetDirectoryName(targetFile) == null)
+                    {
+                        throw new Exception($"Error: {targetFile} is not a valid path.");
+                    }
                     string targetDirectory = Path.GetDirectoryName(targetFile);
+                    if (targetDirectory == null)
+                    {
+                        throw new Exception($"Error: {targetFile} is not a valid path.");
+                    }
                     if (!Directory.Exists(targetDirectory))
                     {
                         Directory.CreateDirectory(targetDirectory);
                     }
+
 
                     File.Copy(file, targetFile, true);
                     /* Will need to change the daily log with the Name of the save and information about the file that has just been saved*/

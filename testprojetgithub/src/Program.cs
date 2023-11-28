@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EasySaveConsoleApp
 {
-    public class Program
+    static class Program
     {
         private const string StateFilePath = ".//.///logs/state.json";
 

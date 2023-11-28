@@ -24,7 +24,7 @@ namespace EasySaveConsoleApp
                 Console.WriteLine("4. Quit");
 
                 Console.Write("Choose an option (1-4): ");
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {

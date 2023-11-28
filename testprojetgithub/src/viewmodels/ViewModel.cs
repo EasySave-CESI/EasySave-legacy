@@ -18,7 +18,7 @@ namespace EasySaveConsoleApp
 
             foreach (var profile in _profiles)
             {
-                Console.WriteLine((int.Parse(profile.Name.Substring(profile.Name.Length - 1)) + 1) + ". " + profile.Name);
+                Console.WriteLine((int.Parse(profile.Name.Substring(profile.Name.Length - 1)) + 1) + ". " + profile.Name + " - " + profile.State + " - " + profile.SourceFilePath + " - " + profile.TargetFilePath);
             }
         }
 
@@ -33,12 +33,26 @@ namespace EasySaveConsoleApp
                 int index = profileNumber - 1;
 
                 Console.Write("New source path: ");
-                string newSourcePath = Console.ReadLine();
-                _profiles[index].SourceFilePath = newSourcePath;
+                string? newSourcePath = Console.ReadLine();
+                if (newSourcePath != null)
+                {
+                    _profiles[index].SourceFilePath = newSourcePath;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid source path.");
+                }
 
                 Console.Write("New target path: ");
-                string newTargetPath = Console.ReadLine();
-                _profiles[index].TargetFilePath = newTargetPath;
+                string? newTargetPath = Console.ReadLine();
+                if (newTargetPath != null)
+                {
+                    _profiles[index].TargetFilePath = newTargetPath;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid target path.");
+                }
 
                 Console.WriteLine("Backup profile modified successfully.");
             }
