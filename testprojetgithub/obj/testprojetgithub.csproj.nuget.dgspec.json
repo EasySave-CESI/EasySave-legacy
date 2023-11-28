@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khali\\source\\repos\\testprojetgithub\\testprojetgithub.csproj": {}
+    "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\EasySave\\EasySave\\testprojetgithub\\testprojetgithub.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khali\\source\\repos\\testprojetgithub\\testprojetgithub.csproj": {
+    "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\EasySave\\EasySave\\testprojetgithub\\testprojetgithub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khali\\source\\repos\\testprojetgithub\\testprojetgithub.csproj",
+        "projectUniqueName": "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\EasySave\\EasySave\\testprojetgithub\\testprojetgithub.csproj",
         "projectName": "testprojetgithub",
-        "projectPath": "C:\\Users\\khali\\source\\repos\\testprojetgithub\\testprojetgithub.csproj",
-        "packagesPath": "C:\\Users\\khali\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khali\\source\\repos\\testprojetgithub\\obj\\",
+        "projectPath": "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\EasySave\\EasySave\\testprojetgithub\\testprojetgithub.csproj",
+        "packagesPath": "C:\\Users\\antoi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\EasySave\\EasySave\\testprojetgithub\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\khali\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\antoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +44,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
