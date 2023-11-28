@@ -13,7 +13,9 @@ namespace EasySaveConsoleApp
 
         public void Run()
         {
-            while (true)
+            bool isRunning = true;
+
+            while (isRunning)
             {
                 Console.WriteLine("\nMenu:");
                 Console.WriteLine("1. Display backup profiles");
@@ -36,7 +38,7 @@ namespace EasySaveConsoleApp
                         _viewModel.ExecuteProfile();
                         break;
                     case "4":
-                        Environment.Exit(0);
+                        isRunning = false; // Setting the flag to false to exit the loop
                         break;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
@@ -44,5 +46,6 @@ namespace EasySaveConsoleApp
                 }
             }
         }
+
     }
 }
