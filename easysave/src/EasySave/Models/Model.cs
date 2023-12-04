@@ -41,11 +41,6 @@ namespace EasySaveConsoleApp
             {
                 string json = File.ReadAllText(filePath);
                 List<Profile> profiles = JsonConvert.DeserializeObject<List<Profile>>(json);
-                foreach (Profile profile in profiles)
-                {
-                    Console.WriteLine(profile.Name);
-                }
-
                 return profiles;
             }
             catch (Exception ex)
@@ -74,24 +69,48 @@ namespace EasySaveConsoleApp
 
             try
             {
-                string[] files = Directory.GetFiles(SourceFilePath, "*", SearchOption.AllDirectories);
-
-                foreach (string file in files)
+                if (TypeOfSave == "complete")
                 {
-                    string relativePath = file.Replace(SourceFilePath, "");
-                    string targetFile = Path.Combine(TargetFilePath, relativePath);
-
-                    string targetDirectory = Path.GetDirectoryName(targetFile);
-                    if (!Directory.Exists(targetDirectory))
+                    if (Directory.Exists(TargetFilePath))
                     {
-                        Directory.CreateDirectory(targetDirectory);
+                        Directory.Delete(TargetFilePath, true);
                     }
 
-                    File.Copy(file, targetFile, true);
-                    /* Will need to change the daily log with the Name of the save and information about the file that has just been saved*/
-                }
+                    Directory.CreateDirectory(TargetFilePath);
 
-                Console.WriteLine($"Backup of profile {Name} completed.");
+                    string[] files = Directory.GetFiles(SourceFilePath, "*", SearchOption.AllDirectories);
+
+                    TotalFilesToCopy = files.Length;
+
+                    foreach (string file in files)
+                    {
+                        TotalFilesSize += new FileInfo(file).Length;
+                    }
+
+                    NbFilesLeftToDo = TotalFilesToCopy;
+
+                    foreach (string file in files)
+                    {
+                        string relativePath = file.Substring(SourceFilePath.Length + 1);
+                        string targetFilePath = Path.Combine(TargetFilePath, relativePath);
+
+                        string targetDirectoryPath = Path.GetDirectoryName(targetFilePath);
+
+                        if (!Directory.Exists(targetDirectoryPath))
+                        {
+                            Directory.CreateDirectory(targetDirectoryPath);
+                        }
+
+                        File.Copy(file, targetFilePath, true);
+
+                        NbFilesLeftToDo--;
+                        Progression = (int)(((double)TotalFilesToCopy - NbFilesLeftToDo) / TotalFilesToCopy * 100);
+                    }
+                }
+                else if (TypeOfSave == "differential")
+                {
+                    Console.WriteLine("Differential backup not implemented yet.");
+                }
             }
             catch (Exception ex)
             {
