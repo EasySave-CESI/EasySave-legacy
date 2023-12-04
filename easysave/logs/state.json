@@ -1,0 +1,52 @@
+[
+    {
+        "Name": "Save1",
+        "SourceFilePath": "test",
+        "TargetFilePath": "test",
+        "State": "END",
+        "TotalFilesToCopy": 0,
+        "TotalFilesSize": 0,
+        "NbFilesLeftToDo": 0,
+        "Progression": 0
+    },
+    {
+        "Name": "Save2",
+        "SourceFilePath": "",
+        "TargetFilePath": "",
+        "State": "END",
+        "TotalFilesToCopy": 0,
+        "TotalFilesSize": 0,
+        "NbFilesLeftToDo": 0,
+        "Progression": 0
+    },
+    {
+        "Name": "Save3",
+        "SourceFilePath": "",
+        "TargetFilePath": "",
+        "State": "END",
+        "TotalFilesToCopy": 0,
+        "TotalFilesSize": 0,
+        "NbFilesLeftToDo": 0,
+        "Progression": 0
+    },
+    {
+        "Name": "Save4",
+        "SourceFilePath": "",
+        "TargetFilePath": "",
+        "State": "END",
+        "TotalFilesToCopy": 0,
+        "TotalFilesSize": 0,
+        "NbFilesLeftToDo": 0,
+        "Progression": 0
+    },
+    {
+        "Name": "Save5",
+        "SourceFilePath": "",
+        "TargetFilePath": "",
+        "State": "END",
+        "TotalFilesToCopy": 0,
+        "TotalFilesSize": 0,
+        "NbFilesLeftToDo": 0,
+        "Progression": 0
+    }
+]

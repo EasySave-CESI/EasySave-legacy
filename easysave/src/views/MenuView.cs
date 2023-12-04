@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* This file will display the menu view on a console */
 using System;
 using System.Collections.Generic;
@@ -36,21 +35,4 @@ namespace menu
 
     }
 
-=======
-using System;
-using System.Collections.Generic;
-using System.Text;
-using EasySaveApp.controller;
-using EasySaveApp.model;
-
-namespace easysave
-{
-    class MenuView
-    {
-        public void DisplayMenu()
-        { 
-
-        }
-    }
->>>>>>> a43b4b15f46d9c11dcd7bc19fd925d6a6582e6f9
 }
