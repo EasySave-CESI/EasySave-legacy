@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace EasySaveConsoleApp
 {
@@ -32,20 +33,40 @@ namespace EasySaveConsoleApp
             int profileNumber;
             if (int.TryParse(Console.ReadLine(), out profileNumber) && profileNumber >= 1 && profileNumber <= 5)
             {
-                int index = profileNumber - 1;
+                int index = profileNumber -1;
 
                 Console.Write("New source path: ");
-                string newSourcePath = Console.ReadLine();
-                _profiles[index].SourceFilePath = newSourcePath;
+
+                _profiles[index].SourceFilePath = Console.ReadLine();
+                Console.WriteLine("New source path: " + _profiles[index].SourceFilePath);
+     
 
                 Console.Write("New target path: ");
-                string newTargetPath = Console.ReadLine();
-                _profiles[index].TargetFilePath = newTargetPath;
+                _profiles[index].TargetFilePath = Console.ReadLine();
+                Console.WriteLine("New target path: " + _profiles[index].TargetFilePath);
 
-                Console.Write("New type of save (complete or differential): ");
-                string newTypeOfSave = Console.ReadLine();
-                _profiles[index].TypeOfSave = newTypeOfSave;
+                Console.Write("New type of save (full of diff): ");
+                if (Console.ReadLine() == "full")
+                {
+                    _profiles[index].TypeOfSave = "full";
+                }
+                else
+                {
+                    _profiles[index].TypeOfSave = "diff";
+                }
 
+                string[] files = Directory.GetFiles(_profiles[index].SourceFilePath, "*", SearchOption.AllDirectories);
+
+                _profiles[index].TotalFilesToCopy = files.Length;
+
+                foreach (string file in files)
+                {
+                    /* Add the size of the file to the total size of the profile in long */
+                    _profiles[index].TotalFilesSize += new FileInfo(file).Length;
+                    Console.WriteLine("Total size of the profile: " + _profiles[index].TotalFilesSize);
+                }
+
+                _profiles[index].State = "READY";
                 /* Then save the profiles to the state file */
                 Profile.SaveProfiles("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\logs\\state.json", _profiles);
             }
