@@ -42,7 +42,8 @@ namespace EasySaveConsoleApp
                 string newTargetPath = Console.ReadLine();
                 _profiles[index].TargetFilePath = newTargetPath;
 
-                Console.WriteLine("Backup profile modified successfully.");
+                /* Then save the profiles to the state file */
+                Profile.SaveProfiles("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\logs\\state.json", _profiles);
             }
             else
             {
