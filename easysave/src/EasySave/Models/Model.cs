@@ -99,36 +99,23 @@ namespace EasySaveConsoleApp
                         if (!File.Exists(targetFilePath) || File.GetLastWriteTime(file) > File.GetLastWriteTime(targetFilePath))
                         {
                             File.Copy(file, targetFilePath, true);
-                            /* Create a new log and write it on the daily log*/
-                            LogEntry logEntry = new LogEntry();
-                            logEntry.Name = Name;
-                            logEntry.FileSource = file;
-                            logEntry.FileTarget = targetFilePath;
-                            logEntry.FileSize = new FileInfo(file).Length;
-                            logEntry.FileTransferTime = 0;
-                            logEntry.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                            DailyLogs dailyLogs = new DailyLogs();
-                            dailyLogs.AddLogEntry(logEntry.Name, logEntry.FileSource, logEntry.FileTarget, logEntry.FileSize, logEntry.FileTransferTime);
-                            dailyLogs.ExportToJson();
                         }
                     }
                     else
                     {
                         File.Copy(file, targetFilePath, true);
-                        /* Create a new log and write it on the daily log*/
-                        LogEntry logEntry = new LogEntry();
-                        logEntry.Name = Name;
-                        logEntry.FileSource = file;
-                        logEntry.FileTarget = targetFilePath;
-                        logEntry.FileSize = new FileInfo(file).Length;
-                        logEntry.FileTransferTime = 0;
-                        logEntry.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                        DailyLogs dailyLogs = new DailyLogs();
-                        dailyLogs.AddLogEntry(logEntry.Name, logEntry.FileSource, logEntry.FileTarget, logEntry.FileSize, logEntry.FileTransferTime);
-                        /* The name of json file is the format year-month-day.json*/
-                        dailyLogs.ExportToJson();
                     }
 
+                    LogEntry logEntry = new LogEntry();
+                    logEntry.Name = Name;
+                    logEntry.FileSource = file;
+                    logEntry.FileTarget = targetFilePath;
+                    logEntry.FileSize = new FileInfo(file).Length;
+                    logEntry.FileTransferTime = 0;
+                    logEntry.Time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                    DailyLogs dailyLogs = new DailyLogs();
+                    dailyLogs.AddLogEntry(logEntry.Name, logEntry.FileSource, logEntry.FileTarget, logEntry.FileSize, logEntry.FileTransferTime);
+                    dailyLogs.ExportToJson();
 
                     NbFilesLeftToDo--;
                     Progression = (int)(((double)TotalFilesToCopy - NbFilesLeftToDo) / TotalFilesToCopy * 100);

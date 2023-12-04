@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace EasySaveConsoleApp
 {
@@ -21,7 +22,7 @@ namespace EasySaveConsoleApp
 
             foreach (var profile in _profiles)
             {
-                Console.WriteLine((int.Parse(profile.Name.Substring(profile.Name.Length - 1)) + 1) + ". " + profile.Name + " - " + profile.State + " - " + profile.SourceFilePath + " - " + profile.TargetFilePath + " - " + profile.TypeOfSave);
+                Console.WriteLine((int.Parse(profile.Name.Substring(profile.Name.Length - 1))) + ". " + profile.Name + " - " + profile.State + " - " + profile.SourceFilePath + " - " + profile.TargetFilePath + " - " + profile.TypeOfSave);
             }
         }
 
@@ -78,19 +79,83 @@ namespace EasySaveConsoleApp
 
         public void ExecuteProfile()
         {
-            Console.WriteLine("\nExecuting a backup:");
+            List<int> index = new List<int>();
 
-            Console.Write("Enter the profile number to execute (1-5): ");
-            int profileNumber;
-            if (int.TryParse(Console.ReadLine(), out profileNumber) && profileNumber >= 1 && profileNumber <= 5)
+            string pattern_1 = @"^[0-9]+$";
+            string pattern_2 = @"^[0-9]+[;][0-9]+$";
+            string pattern_3 = @"^[0-9]+[-][0-9]+$";
+
+            Console.WriteLine("Choose the profile(s) to execute: ");
+
+            string answer = Console.ReadLine();
+
+            if (Regex.IsMatch(answer, pattern_1))
             {
-                int index = profileNumber - 1;
-
-                _profiles[index].Execute();
+                index.Add(int.Parse(answer) - 1);
             }
-            else
+
+            if (Regex.IsMatch(answer, pattern_2))
             {
-                Console.WriteLine("Invalid profile number. Please enter a number between 1 and 5.");
+                string[] split = answer.Split(';');
+
+                index.Add(int.Parse(split[0]) - 1);
+                index.Add(int.Parse(split[1]) - 1);
+            }
+
+            if (Regex.IsMatch(answer, pattern_3))
+            {
+                int start = int.Parse(answer.Split('-')[0]);
+                int end = int.Parse(answer.Split('-')[1]);
+
+                for (int i = start; i <= end; i++)
+                {
+                    index.Add(i - 1);
+                }
+            }
+
+            for (int i = 0; i < index.Count; i++)
+            {
+                Console.WriteLine("Backing up profile " + _profiles[index[i]].Name + " in progress...");
+
+                try
+                {
+                    if (Directory.Exists(_profiles[index[i]].TargetFilePath))
+                    {
+                        Directory.Delete(_profiles[index[i]].TargetFilePath, true);
+                    }
+
+                    Directory.CreateDirectory(_profiles[index[i]].TargetFilePath);
+
+                    string[] files = Directory.GetFiles(_profiles[index[i]].SourceFilePath, "*", SearchOption.AllDirectories);
+
+                    _profiles[index[i]].NbFilesLeftToDo = _profiles[index[i]].TotalFilesToCopy;
+
+                    foreach (string file in files)
+                    {
+                        string relativePath = file.Substring(_profiles[index[i]].SourceFilePath.Length + 1);
+
+                        string targetFilePath = Path.Combine(_profiles[index[i]].TargetFilePath, relativePath);
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
+
+                        File.Copy(file, targetFilePath, true);
+
+                        _profiles[index[i]].NbFilesLeftToDo--;
+                        _profiles[index[i]].Progression = (int)((_profiles[index[i]].TotalFilesToCopy - _profiles[index[i]].NbFilesLeftToDo) * 100 / _profiles[index[i]].TotalFilesToCopy);
+                        _profiles[index[i]].State = "RUNNING";
+
+                        Profile.SaveProfiles("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\logs\\state.json", _profiles);
+                    }
+
+                    _profiles[index[i]].State = "COMPLETED";
+                    Profile.SaveProfiles("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\logs\\state.json", _profiles);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error backing up profile {_profiles[index[i]].Name}: {ex.Message}");
+                    _profiles[index[i]].State = "FAILED";
+                    Profile.SaveProfiles("C:\\Users\\antoi\\[01]_CESI\\[03]_A3\\[05]_Programmation_Système\\[02]_Projets\\test_v1\\logs\\state.json", _profiles);
+                }
             }
         }
     }
