@@ -1,0 +1,57 @@
+[
+  {
+    "Name": "Save1",
+    "SourceFilePath": "C:\\Users\\antoi\\Downloads\\test\\source",
+    "TargetFilePath": "C:\\Users\\antoi\\Downloads\\test\\destination",
+    "State": "END",
+    "TotalFilesToCopy": 0,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 0,
+    "TypeOfSave": "complete"
+  },
+  {
+    "Name": "Save2",
+    "SourceFilePath": "test2",
+    "TargetFilePath": "test2",
+    "State": "END",
+    "TotalFilesToCopy": 0,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 0,
+    "TypeOfSave": null
+  },
+  {
+    "Name": "Save3",
+    "SourceFilePath": "test3",
+    "TargetFilePath": "test3",
+    "State": "END",
+    "TotalFilesToCopy": 0,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 0,
+    "TypeOfSave": null
+  },
+  {
+    "Name": "Save4",
+    "SourceFilePath": "",
+    "TargetFilePath": "",
+    "State": "END",
+    "TotalFilesToCopy": 0,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 0,
+    "TypeOfSave": null
+  },
+  {
+    "Name": "Save5",
+    "SourceFilePath": "",
+    "TargetFilePath": "",
+    "State": "END",
+    "TotalFilesToCopy": 0,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 0,
+    "TypeOfSave": null
+  }
+]
