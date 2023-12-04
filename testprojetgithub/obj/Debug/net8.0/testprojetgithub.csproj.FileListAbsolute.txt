@@ -1,5 +1,0 @@
-C:\Users\antoi\[01]_CESI\[03]_A3\[05]_Programmation_Système\[02]_Projets\EasySave\EasySave\testprojetgithub\obj\Debug\net8.0\testprojetgithub.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\antoi\[01]_CESI\[03]_A3\[05]_Programmation_Système\[02]_Projets\EasySave\EasySave\testprojetgithub\obj\Debug\net8.0\testprojetgithub.AssemblyInfoInputs.cache
-C:\Users\antoi\[01]_CESI\[03]_A3\[05]_Programmation_Système\[02]_Projets\EasySave\EasySave\testprojetgithub\obj\Debug\net8.0\testprojetgithub.AssemblyInfo.cs
-C:\Users\antoi\[01]_CESI\[03]_A3\[05]_Programmation_Système\[02]_Projets\EasySave\EasySave\testprojetgithub\obj\Debug\net8.0\testprojetgithub.csproj.CoreCompileInputs.cache
-C:\Users\antoi\[01]_CESI\[03]_A3\[05]_Programmation_Système\[02]_Projets\EasySave\EasySave\testprojetgithub\obj\Debug\net8.0\testprojetgithub.sourcelink.json
